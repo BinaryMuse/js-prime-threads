@@ -11,10 +11,10 @@ const DEFAULT_WORKER_NUM = 8
 let next = 2
 let highestPrime = 1
 let workerCount = 0
-let lastNumFound = 0
 let numFound = 0
 let exiting = false
-const stats = new Stats(4)
+const testStats = new Stats(4)
+const candidateStats = new Stats(4)
 
 const ticker = new Ticker()
 function display () {
@@ -22,17 +22,16 @@ function display () {
   readline.cursorTo(process.stdout, 0);
   const char = ticker.next()
   const str = util.format(
-    '%s Workers: %i; Testing: %i; highest candidate: %i; candidates found: %i; rate: %i/sec',
-    char, workerCount, next, highestPrime, numFound, stats.average()
+    '%s Workers: %i; Testing: %i; highest candidate: %i; candidates found: %i; test rate: %i/sec; candidate rate: %i/sec',
+    char, workerCount, next, highestPrime, numFound, testStats.total(), candidateStats.total()
   )
   process.stdout.write(str)
 }
 
 setInterval(display, 33)
 setInterval(() => {
-  const delta = numFound - lastNumFound
-  lastNumFound = numFound
-  stats.push(delta)
+  testStats.push(next)
+  candidateStats.push(numFound)
 }, 250)
 
 function createWorker () {
