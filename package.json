@@ -1,0 +1,13 @@
+{
+  "name": "js-prime-threads",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Michelle Tilley <michelle@michelletilley.net>",
+  "license": "MIT",
+  "dependencies": {}
+}
