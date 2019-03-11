@@ -42,7 +42,6 @@ function createWorker () {
     if (message.type === 'request') {
       next = Math.max(next, highestPrime) + 1
       worker.postMessage(next)
-      next++
     } else if (message.type === 'prime') {
       numFound++
       if (message.value > highestPrime) {
